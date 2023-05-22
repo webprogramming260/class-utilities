@@ -1,0 +1,13 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+html {
+  font-size: 10vw;
+}
+
+#app {
+  height: 100vh;
+  display: flex;
+}

@@ -1,0 +1,14 @@
+.number {
+  display: flex;
+  width: 1rem;
+}
+
+.number-part {
+  fill: #eccc22;
+  opacity: 0.05;
+  transition: opacity 750ms ease;
+}
+
+.is-active {
+  opacity: 1;
+}
