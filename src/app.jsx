@@ -22,7 +22,6 @@ export default function App() {
           break;
         }
       }
-      console.log(ev.key);
     });
   }, []);
 
