@@ -4,17 +4,21 @@ import Clock from './clock/clock';
 import Blank from './blank/blank';
 
 export default function App() {
-  const [utility, setUtility] = React.useState(<Blank />);
+  const [utility, setUtility] = React.useState('blank');
+
+  function onClick() {
+    setUtility(utility === 'blank' ? 'clock' : 'blank');
+  }
 
   React.useEffect(() => {
     document.addEventListener('keypress', (ev) => {
       switch (ev.key) {
         case 'b': {
-          setUtility(<Blank />);
+          setUtility('blank');
           break;
         }
         case 'c': {
-          setUtility(<Clock />);
+          setUtility('clock');
           break;
         }
       }
@@ -22,5 +26,9 @@ export default function App() {
     });
   }, []);
 
-  return <div id='app'>{utility}</div>;
+  let display = <Blank onClick={onClick} />;
+  if (utility === 'clock') {
+    display = <Clock onClick={onClick} />;
+  }
+  return <div id='app'>{display}</div>;
 }

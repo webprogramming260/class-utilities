@@ -21,7 +21,9 @@ function getDigit(pos, str) {
   return digitMap[Number(str.length === 1 ? str : str.slice(1))];
 }
 
-export default function Clock() {
+export default function Clock({onClick}) {
+  onClick = onClick || (() => {});
+
   const [hour1, setHour1] = React.useState([]);
   const [hour2, setHour2] = React.useState([]);
   const [minute1, setMinute1] = React.useState([]);
@@ -54,7 +56,7 @@ export default function Clock() {
   }, []);
 
   return (
-    <div className='clock'>
+    <div className='clock' onClick={onClick}>
       <Digit activePieces={hour1} />
       <Digit activePieces={hour2} />
       <div className='separator'>:</div>
