@@ -1,25 +1,13 @@
 body {
-  background-color: white;
+  background-color: rgb(69 99 117);
 }
 
-.color {
-  background: radial-gradient(circle at center, #f8f1a4 0%, #f8f1c1 4%, #f7f5c8 12.25%, #f8f6e2 31.25%, #fefbe6 50%) top
-    right/200% 200%;
-  animation: vary 60s infinite alternate;
-  width: 100%;
-}
-
-@keyframes vary {
-  0% {
-    background-position: top left;
-  }
-  25% {
-    background-position: bottom left;
-  }
-  75% {
-    background-position: center left;
-  }
-  100% {
-    background-position: top right;
-  }
+.joke {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 10vw;
+  color: rgb(227 221 163);
+  font: bold 5vw sans-serif;
 }

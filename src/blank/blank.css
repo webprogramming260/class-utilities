@@ -3,9 +3,9 @@ body {
 }
 
 .color {
-  background: radial-gradient(circle at center, #f8f1a4 0%, #f8f1c1 4%, #f7f5c8 12.25%, #f8f6e2 31.25%, #fefbe6 50%) top
+  background: radial-gradient(circle at center, #fce91f 0%, #ffe645 4%, #faf369 12.25%, #faf5bf 31.25%, #fefbe6 50%) top
     right/200% 200%;
-  animation: vary 60s infinite alternate;
+  animation: vary 10s infinite alternate;
   width: 100%;
 }
 
@@ -14,10 +14,10 @@ body {
     background-position: top left;
   }
   25% {
-    background-position: bottom left;
+    background-position: center right;
   }
   75% {
-    background-position: center left;
+    background-position: bottom left;
   }
   100% {
     background-position: top right;

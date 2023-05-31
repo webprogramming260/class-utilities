@@ -8,7 +8,7 @@ export default function App() {
   const [utility, setUtility] = React.useState('blank');
 
   function onClick() {
-    setUtility(utility === 'blank' ? 'clock' : 'blank');
+    setUtility(utility === 'blank' ? 'clock' : utility === 'clock' ? 'joke' : 'blank');
   }
 
   React.useEffect(() => {
