@@ -1,0 +1,12 @@
+.player {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  font: 100 8vw sans-serif;
+  background-color: blueviolet;
+}
+
+.title {
+  color: white;
+}

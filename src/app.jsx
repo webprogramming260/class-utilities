@@ -3,6 +3,7 @@ import './app.css';
 import Clock from './clock/clock';
 import Blank from './blank/blank';
 import Joke from './joke/joke';
+import Music from './music/music';
 
 export default function App() {
   const [utility, setUtility] = React.useState('blank');
@@ -26,6 +27,10 @@ export default function App() {
           setUtility('joke');
           break;
         }
+        case 'm': {
+          setUtility('music');
+          break;
+        }
       }
     });
   }, []);
@@ -35,6 +40,8 @@ export default function App() {
     display = <Clock onClick={onClick} />;
   } else if (utility === 'joke') {
     display = <Joke onClick={onClick} />;
+  } else if (utility === 'music') {
+    display = <Music onClick={onClick} />;
   }
   return <div id='app'>{display}</div>;
 }
