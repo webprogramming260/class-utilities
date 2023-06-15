@@ -1,10 +1,17 @@
 import React from 'react';
 import './music.css';
-const mp3Files = ['music/aqueous.mp3', 'music/test.mp3'];
+const mp3Files = [
+  'music/aqueous.mp3',
+  'music/ourHouse.mp3',
+  'music/oxygene.mp3',
+  'music/takeOnMe.mp3',
+  'music/liftMeUp.mp3',
+  'music/feelAlright.mp3',
+];
 
 export default function Music() {
-  const [currentFile, setCurrentFile] = React.useState(0);
-  const [audio] = React.useState(new Audio(mp3Files[currentFile]));
+  const [playPos, setPlayPos] = React.useState(0);
+  const [audio] = React.useState(new Audio(mp3Files[playPos]));
   const [autoPlay, setAutoPlay] = React.useState(true);
   if (autoPlay) {
     audio.play();
@@ -15,11 +22,11 @@ export default function Music() {
     return () => {
       audio.removeEventListener('ended', playNextAudio);
     };
-  }, [audio, currentFile]);
+  }, [audio, playPos]);
 
   const playNextAudio = (e) => {
-    setCurrentFile((prevFile) => (prevFile + 1) % mp3Files.length);
-    audio.src = mp3Files[(currentFile + 1) % mp3Files.length];
+    setPlayPos((prevFile) => (prevFile + 1) % mp3Files.length);
+    audio.src = mp3Files[(playPos + 1) % mp3Files.length];
     e.stopPropagation();
   };
 
@@ -28,10 +35,14 @@ export default function Music() {
     setAutoPlay(!audio.paused);
   };
 
+  const getTitle = (text) => {
+    return text.match(/.*\/(.*).mp3$/u)[1];
+  };
+
   return (
     <div className='player' onClick={togglePlay}>
       <div className='title' onClick={playNextAudio}>
-        {mp3Files[currentFile]}
+        {getTitle(mp3Files[playPos])}
       </div>
     </div>
   );
