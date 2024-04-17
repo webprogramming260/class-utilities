@@ -3,12 +3,12 @@ import './music.css';
 const mp3Files = [
   'music/aqueous.mp3',
   'music/ourHouse.mp3',
+  'music/ruleTheWorld.mp3',
+  'music/westEndGirls.mp3',
   'music/oxygene.mp3',
   'music/takeOnMe.mp3',
   'music/liftMeUp.mp3',
   'music/feelAlright.mp3',
-  'music/ruleTheWorld.mp3',
-  'music/westEndGirls.mp3',
 ];
 
 export default function Music() {
