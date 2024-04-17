@@ -7,6 +7,8 @@ const mp3Files = [
   'music/takeOnMe.mp3',
   'music/liftMeUp.mp3',
   'music/feelAlright.mp3',
+  'music/ruleTheWorld.mp3',
+  'music/westEndGirls.mp3',
 ];
 
 export default function Music() {
