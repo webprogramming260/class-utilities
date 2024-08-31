@@ -1,0 +1,26 @@
+body {
+  background-color: rgb(69 99 117);
+}
+
+.display {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  padding: 0 10vw;
+  color: rgb(227 221 163);
+  font: 100 5vw sans-serif;
+}
+
+.author {
+  margin: 1em 0;
+  color: rgb(237, 170, 47);
+  width: 100%;
+  text-align: end;
+  font: italic 100 4vw sans-serif;
+}
+
+.author::before {
+  content: '- ';
+}
