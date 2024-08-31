@@ -21,6 +21,9 @@ function getDigit(pos, str) {
   return digitMap[Number(str.length === 1 ? str : str.slice(1))];
 }
 
+const timerSecondNoise = new Audio('timerSecond.mp3');
+const timerEndNoise = new Audio('music/aqueous.mp3');
+
 export default function Countdown({ minutes, seconds }) {
   const [time, setTime] = React.useState(new Date(minutes * 60000 + seconds * 1000));
   const [minute1, setMinute1] = React.useState([]);
@@ -43,13 +46,18 @@ export default function Countdown({ minutes, seconds }) {
       setTime((prevTime) => {
         const newTime = new Date(prevTime - 1000);
         if (newTime.getTime() <= 0) {
+          timerEndNoise.play();
           clearInterval(timer);
           document.querySelector('.timer').classList.add('timer-expired');
           document.querySelector('.timer').classList.remove('timer-flash');
-        } else if (newTime.getTime() < 10000) {
-          document.querySelector('.timer').classList.add('timer-flash');
+        } else {
+          if (newTime.getTime() < 15000) {
+            timerSecondNoise.play();
+          }
+          if (newTime.getTime() < 5000) {
+            document.querySelector('.timer').classList.add('timer-flash');
+          }
         }
-
         return newTime;
       });
     }, 1000);
@@ -60,7 +68,7 @@ export default function Countdown({ minutes, seconds }) {
   }, []);
 
   return (
-    <div className={`clock`}>
+    <div className={`countdown`}>
       <Digit activePieces={minute1} />
       <Digit activePieces={minute2} />
       <div className='separator'>:</div>

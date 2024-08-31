@@ -9,7 +9,7 @@ export default function Quote({ onClick }) {
     getQuote();
     const timer = setInterval(() => {
       getQuote();
-    }, 20000);
+    }, 15000);
 
     return () => {
       clearInterval(timer);
