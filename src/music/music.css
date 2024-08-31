@@ -2,6 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   width: 100%;
   font: 100 8vw sans-serif;
   background-color: #e2a92b;

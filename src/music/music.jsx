@@ -4,6 +4,7 @@ const mp3Files = [
   'music/aqueous.mp3',
   'music/ourHouse.mp3',
   'music/ruleTheWorld.mp3',
+  'music/thereMightBeCoffee.m4a',
   'music/westEndGirls.mp3',
   'music/oxygene.mp3',
   'music/takeOnMe.mp3',
@@ -38,17 +39,19 @@ export default function Music() {
     e.stopPropagation();
   };
 
-  const togglePlay = () => {
+  const togglePlay = (e) => {
     audio.paused ? audio.play() : audio.pause();
     setAutoPlay(!audio.paused);
+    e.stopPropagation();
   };
 
   const getTitle = (text) => {
-    return text.match(/.*\/(.*).mp3$/u)[1];
+    return text.match(/.*\/([^\.]+)\..*$/u)[1];
   };
 
   return (
-    <div className='player' onClick={togglePlay}>
+    <div className='player'>
+      <div onClick={togglePlay}>{audio.paused ? '▶️' : '⏸️'}</div>
       <div className='title' onClick={playNextAudio}>
         {getTitle(mp3Files[playPos])}
       </div>
