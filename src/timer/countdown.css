@@ -9,10 +9,10 @@
   margin: 0 10px;
 }
 
-.separator {
+.countdown-separator {
   align-items: center;
   color: #ffab11;
-  font-size: 1em;
+  font-size: 2rem;
 }
 @keyframes flash {
   0% {

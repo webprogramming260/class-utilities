@@ -10,7 +10,7 @@ import Timer from './timer/timer';
 const utilities = ['blank', 'clock', 'joke', 'quote', 'timer', 'music'];
 
 export default function App() {
-  const [utility, setUtility] = React.useState('timer');
+  const [utility, setUtility] = React.useState('blank');
 
   function onClick() {
     setUtility((utility) => {

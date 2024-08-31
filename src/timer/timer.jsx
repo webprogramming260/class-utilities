@@ -5,8 +5,8 @@ import Countdown from './countdown';
 export default function Timer({ onClick }) {
   onClick = onClick || (() => {});
 
-  const [minutes, setMinutes] = React.useState(0);
-  const [seconds, setSeconds] = React.useState(11);
+  const [minutes, setMinutes] = React.useState(1);
+  const [seconds, setSeconds] = React.useState(0);
   const [displayTimer, setDisplayTimer] = React.useState(false);
 
   return (

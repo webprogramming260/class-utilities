@@ -20,9 +20,14 @@ export default function Music() {
   }
 
   React.useEffect(() => {
-    audio.addEventListener('ended', playNextAudio);
     return () => {
       audio.pause();
+    };
+  }, []);
+
+  React.useEffect(() => {
+    audio.addEventListener('ended', playNextAudio);
+    return () => {
       audio.removeEventListener('ended', playNextAudio);
     };
   }, [audio, playPos]);

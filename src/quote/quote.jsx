@@ -2,7 +2,7 @@ import React from 'react';
 import './quote.css';
 
 export default function Quote({ onClick }) {
-  const [quoteData, setQuoteData] = React.useState('');
+  const [quoteData, setQuoteData] = React.useState({ quote: '', author: '...loading' });
   onClick = onClick || (() => {});
 
   React.useEffect(() => {
@@ -27,7 +27,6 @@ export default function Quote({ onClick }) {
     fetch('https://quote.cs260.click')
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         setQuoteData(data);
       });
   }

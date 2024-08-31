@@ -51,10 +51,10 @@ export default function Countdown({ minutes, seconds }) {
           document.querySelector('.timer').classList.add('timer-expired');
           document.querySelector('.timer').classList.remove('timer-flash');
         } else {
-          if (newTime.getTime() < 15000) {
+          if (newTime.getTime() <= 15000) {
             timerSecondNoise.play();
           }
-          if (newTime.getTime() < 5000) {
+          if (newTime.getTime() <= 5000) {
             document.querySelector('.timer').classList.add('timer-flash');
           }
         }
@@ -71,7 +71,7 @@ export default function Countdown({ minutes, seconds }) {
     <div className={`countdown`}>
       <Digit activePieces={minute1} />
       <Digit activePieces={minute2} />
-      <div className='separator'>:</div>
+      <div className='countdown-separator'>:</div>
       <Digit activePieces={second1} />
       <Digit activePieces={second2} />
     </div>
