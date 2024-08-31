@@ -1,5 +1,6 @@
 import React from 'react';
 import Digit from './digit.jsx';
+import DrawConfetti from './confetti.js';
 import './countdown.css';
 
 function getDigit(pos, str) {
@@ -50,6 +51,7 @@ export default function Countdown({ minutes, seconds }) {
           clearInterval(timer);
           document.querySelector('.timer').classList.add('timer-expired');
           document.querySelector('.timer').classList.remove('timer-flash');
+          DrawConfetti('canvas');
         } else {
           if (newTime.getTime() <= 15000) {
             timerSecondNoise.play();
@@ -69,6 +71,7 @@ export default function Countdown({ minutes, seconds }) {
 
   return (
     <div className={`countdown`}>
+      <canvas id='canvas'></canvas>
       <Digit activePieces={minute1} />
       <Digit activePieces={minute2} />
       <div className='countdown-separator'>:</div>

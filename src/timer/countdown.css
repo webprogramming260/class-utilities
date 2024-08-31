@@ -9,6 +9,14 @@
   margin: 0 10px;
 }
 
+canvas {
+  position: absolute;
+  overflow-y: hidden;
+  overflow-x: hidden;
+  width: 100%;
+  margin: 0;
+}
+
 .countdown-separator {
   align-items: center;
   color: #ffab11;
@@ -34,5 +42,5 @@
 }
 
 .timer-expired {
-  background-color: #762020;
+  background-color: #ffffff;
 }
