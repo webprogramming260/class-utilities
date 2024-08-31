@@ -5,11 +5,12 @@ import Blank from './blank/blank';
 import Joke from './joke/joke';
 import Quote from './quote/quote';
 import Music from './music/music';
+import Timer from './timer/timer';
 
-const utilities = ['blank', 'clock', 'joke', 'quote', 'music'];
+const utilities = ['blank', 'clock', 'joke', 'quote', 'timer', 'music'];
 
 export default function App() {
-  const [utility, setUtility] = React.useState('quote');
+  const [utility, setUtility] = React.useState('timer');
 
   function onClick() {
     setUtility((utility) => {
@@ -32,6 +33,8 @@ export default function App() {
     display = <Joke onClick={onClick} />;
   } else if (utility === 'quote') {
     display = <Quote onClick={onClick} />;
+  } else if (utility === 'timer') {
+    display = <Timer onClick={onClick} />;
   } else if (utility === 'music') {
     display = <Music onClick={onClick} />;
   }
