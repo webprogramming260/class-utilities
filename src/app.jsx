@@ -22,7 +22,10 @@ export default function App() {
 
   React.useEffect(() => {
     document.addEventListener('keypress', (ev) => {
-      setUtility(utilities.find((util) => util.charAt(0) === ev.key));
+      const newUtility = utilities.find((util) => util.charAt(0) === ev.key);
+      if (newUtility) {
+        setUtility(newUtility);
+      }
     });
   }, []);
 

@@ -21,12 +21,8 @@ function getDigit(pos, str) {
   return digitMap[Number(str.length === 1 ? str : str.slice(1))];
 }
 
-export default function Countdown({ onClick }) {
-  onClick = onClick || (() => {});
-
-  const [time, setTime] = React.useState(new Date());
-  const [hour1, setHour1] = React.useState([]);
-  const [hour2, setHour2] = React.useState([]);
+export default function Countdown({ minutes, seconds }) {
+  const [time, setTime] = React.useState(new Date(minutes * 60000 + seconds * 1000));
   const [minute1, setMinute1] = React.useState([]);
   const [minute2, setMinute2] = React.useState([]);
   const [second1, setSecond1] = React.useState([]);
@@ -34,11 +30,8 @@ export default function Countdown({ onClick }) {
 
   React.useEffect(() => {
     const minutes = time.getMinutes().toString();
-    const hours = time.getHours().toString();
     const seconds = time.getSeconds().toString();
 
-    setHour1(getDigit(0, hours));
-    setHour2(getDigit(1, hours));
     setMinute1(getDigit(0, minutes));
     setMinute2(getDigit(1, minutes));
     setSecond1(getDigit(0, seconds));
@@ -47,7 +40,18 @@ export default function Countdown({ onClick }) {
 
   React.useEffect(() => {
     const timer = setInterval(() => {
-      setTime((prevTime) => new Date(prevTime - 1000));
+      setTime((prevTime) => {
+        const newTime = new Date(prevTime - 1000);
+        if (newTime.getTime() <= 0) {
+          clearInterval(timer);
+          document.querySelector('.timer').classList.add('timer-expired');
+          document.querySelector('.timer').classList.remove('timer-flash');
+        } else if (newTime.getTime() < 10000) {
+          document.querySelector('.timer').classList.add('timer-flash');
+        }
+
+        return newTime;
+      });
     }, 1000);
 
     return () => {
@@ -56,10 +60,7 @@ export default function Countdown({ onClick }) {
   }, []);
 
   return (
-    <div className='clock' onClick={onClick}>
-      <Digit activePieces={hour1} />
-      <Digit activePieces={hour2} />
-      <div className='separator'>:</div>
+    <div className={`clock`}>
       <Digit activePieces={minute1} />
       <Digit activePieces={minute2} />
       <div className='separator'>:</div>
