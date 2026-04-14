@@ -1,16 +1,6 @@
 import React from 'react';
 import './music.css';
-const mp3Files = [
-  'music/aqueous.mp3',
-  'music/ourHouse.mp3',
-  'music/ruleTheWorld.mp3',
-  'music/thereMightBeCoffee.m4a',
-  'music/westEndGirls.mp3',
-  'music/oxygene.mp3',
-  'music/takeOnMe.mp3',
-  'music/liftMeUp.mp3',
-  'music/feelAlright.mp3',
-];
+const mp3Files = ['music/aqueous.mp3', 'music/allDayLong.mp3', 'music/bad.mp3', 'music/bizarreLoveTriangle.mp3', 'music/danceAway.mp3', 'music/EMC2.mp3', 'music/fastCar.mp3', 'music/feelAlright.mp3', 'music/liftMeUp.mp3', 'music/nothingToFear.mp3', 'music/oldWoman.mp3', 'music/ourHouse.mp3', 'music/oxygene.mp3', 'music/ruleTheWorld.mp3', 'music/soonYoullGetBetter.mp3', 'music/spaceOddity.mp3', 'music/sweetDreams.mp3', 'music/takeOnMe.mp3', 'music/thereMightBeCoffee.m4a', 'music/westEndGirls.mp3'];
 
 export default function Music() {
   const [playPos, setPlayPos] = React.useState(0);
@@ -50,9 +40,9 @@ export default function Music() {
   };
 
   return (
-    <div className='player'>
+    <div className="player">
       <div onClick={togglePlay}>{audio.paused ? '▶️' : '⏸️'}</div>
-      <div className='title' onClick={playNextAudio}>
+      <div className="title" onClick={playNextAudio}>
         {getTitle(mp3Files[playPos])}
       </div>
     </div>
