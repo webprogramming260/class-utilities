@@ -7,7 +7,7 @@
   align-items: center;
   justify-content: center;
   background: linear-gradient(160deg, #0f1226, #1d2a5b 60%, #0b3b5a);
-  font-family: sans-serif;
+  font-family: 'Quicksand', sans-serif;
 }
 
 /* Aurora: blurred blobs drifting and cycling hue */

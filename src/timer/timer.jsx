@@ -10,20 +10,27 @@ export default function Timer({ onClick }) {
   const [displayTimer, setDisplayTimer] = React.useState(false);
 
   return (
-    <div className='timer'>
+    <div className="timer" onClick={onClick}>
       {displayTimer && (
         <div>
           <Countdown minutes={minutes} seconds={seconds} />
         </div>
       )}
       {!displayTimer && (
-        <div className='timer'>
-          <div className='controls'>
+        <div className="timer">
+          <div className="controls" onClick={(e) => e.stopPropagation()}>
             <input value={minutes} onChange={(e) => setMinutes(e.target.value)} />
-            <div className='separator'>:</div>
+            <div className="separator">:</div>
             <input value={seconds} onChange={(e) => setSeconds(e.target.value)} />
           </div>
-          <button onClick={() => setDisplayTimer(true)}>Start</button>
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              setDisplayTimer(true);
+            }}
+          >
+            Start
+          </button>
         </div>
       )}
     </div>

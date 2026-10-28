@@ -6,7 +6,7 @@
   justify-content: center;
   background: linear-gradient(160deg, #0f1226, #1d2a5b 60%, #0b3b5a);
   width: 100%;
-  font: 200 5vw sans-serif;
+  font: 200 5vw 'Quicksand', sans-serif;
   color: white;
 }
 
@@ -28,7 +28,7 @@
 .controls input {
   width: 10vw;
   height: 10vh;
-  font: 200 7vh sans-serif;
+  font: 200 7vh 'Quicksand', sans-serif;
   text-align: center;
   color: white;
   background: rgba(255, 255, 255, 0.12);
@@ -44,7 +44,7 @@
 .timer button {
   margin: 30px;
   padding: 0.4em 1.6em;
-  font: 200 3vw sans-serif;
+  font: 200 3vw 'Quicksand', sans-serif;
   color: #0f1226;
   background: #5ad1ff;
   border: none;
@@ -60,5 +60,5 @@
 .controls .separator {
   align-items: center;
   color: white;
-  font: 200 1.5em sans-serif;
+  font: 200 1.5em 'Quicksand', sans-serif;
 }
