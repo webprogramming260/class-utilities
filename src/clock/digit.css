@@ -4,7 +4,8 @@
 }
 
 .number-part {
-  fill: #eccc22;
+  fill: #5ad1ff;
+  filter: drop-shadow(0 0 12px rgba(90, 209, 255, 0.6));
   opacity: 0.05;
   transition: opacity 750ms ease;
 }

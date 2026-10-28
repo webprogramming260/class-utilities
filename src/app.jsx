@@ -6,8 +6,9 @@ import Joke from './joke/joke';
 import Quote from './quote/quote';
 import Music from './music/music';
 import Timer from './timer/timer';
+import Demo from './demo/demo';
 
-const utilities = ['blank', 'clock', 'joke', 'quote', 'timer', 'music'];
+const utilities = ['blank', 'clock', 'joke', 'quote', 'timer', 'music', 'demo'];
 
 export default function App() {
   const [utility, setUtility] = React.useState('blank');
@@ -40,6 +41,8 @@ export default function App() {
     display = <Timer onClick={onClick} />;
   } else if (utility === 'music') {
     display = <Music onClick={onClick} />;
+  } else if (utility === 'demo') {
+    display = <Demo onClick={onClick} />;
   }
-  return <div id='app'>{display}</div>;
+  return <div id="app">{display}</div>;
 }

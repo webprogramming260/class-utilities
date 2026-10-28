@@ -1,26 +1,127 @@
-body {
-  background-color: rgb(69 99 117);
-}
-
-.display {
+.quote-display {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-direction: column;
-  text-align: center;
-  padding: 0 10vw;
-  color: rgb(227 221 163);
-  font: 100 5vw sans-serif;
-}
-
-.author {
-  margin: 1em 0;
-  color: rgb(237, 170, 47);
   width: 100%;
-  text-align: end;
-  font: italic 100 4vw sans-serif;
+  height: 100%;
+  min-height: 100vh;
+  padding: 12vh 14vw;
+  overflow: hidden;
+  color: white;
+  font-family: sans-serif;
+  background: linear-gradient(160deg, #0f1226, #1d2a5b 60%, #0b3b5a);
 }
 
-.author::before {
-  content: '- ';
+/* Drifting ambient glows */
+.quote-display::before,
+.quote-display::after {
+  content: '';
+  position: absolute;
+  width: 60vmax;
+  height: 60vmax;
+  border-radius: 50%;
+  filter: blur(6vmax);
+  opacity: 0.35;
+  animation: quote-drift 20s ease-in-out infinite alternate;
+}
+
+.quote-display::before {
+  top: -30vmax;
+  right: -20vmax;
+  background: radial-gradient(circle, #5ad1ff, transparent 65%);
+}
+
+.quote-display::after {
+  bottom: -30vmax;
+  left: -20vmax;
+  background: radial-gradient(circle, #8a5cff, transparent 65%);
+  animation-duration: 26s;
+  animation-direction: alternate-reverse;
+}
+
+@keyframes quote-drift {
+  to {
+    transform: translate(-12vmax, 8vmax) scale(1.2);
+  }
+}
+
+.quote-box {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  min-height: calc(100vh - 24vh);
+  overflow: hidden;
+  border-radius: 3vw;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 2vw 6vw rgba(0, 0, 0, 0.35), inset 0 0 4vw rgba(90, 209, 255, 0.08);
+}
+
+/* Oversized faint quotation mark behind the text */
+.quote-box::before {
+  content: '\201C';
+  position: absolute;
+  top: -3vw;
+  left: 2vw;
+  font-family: Georgia, serif;
+  font-size: 30vw;
+  line-height: 1;
+  color: #5ad1ff;
+  opacity: 0.1;
+  pointer-events: none;
+}
+
+.quote-text {
+  position: relative;
+  width: 100%;
+  padding: 5vw 7vw;
+  text-align: center;
+  font-size: 5vw;
+  font-weight: 200;
+  text-shadow: 0 0 2vw rgba(90, 209, 255, 0.35);
+  animation: quote-in 0.9s ease-out;
+}
+
+.quote-text .quote {
+  line-height: 1.3;
+  font-style: italic;
+  overflow-wrap: anywhere;
+}
+
+.quote-text .author {
+  margin-top: 0.8em;
+  text-align: end;
+  font-size: 0.7em;
+  font-style: normal;
+  font-weight: 300;
+  letter-spacing: 0.08em;
+  color: #5ad1ff;
+  text-shadow: none;
+}
+
+.quote-text .author::before {
+  content: '';
+  display: inline-block;
+  width: 1.5em;
+  height: 1px;
+  margin-right: 0.6em;
+  vertical-align: middle;
+  background: #5ad1ff;
+}
+
+@keyframes quote-in {
+  from {
+    opacity: 0;
+    filter: blur(8px);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+  }
 }

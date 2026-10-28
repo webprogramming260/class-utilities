@@ -1,13 +1,101 @@
-body {
-  background-color: rgb(69 99 117);
-}
-
-.joke {
+.joke-display {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+  padding: 12vh 14vw;
+  overflow: hidden;
+  color: white;
+  font-family: sans-serif;
+  background: linear-gradient(160deg, #0f1226, #1d2a5b 60%, #0b3b5a);
+}
+
+/* Drifting ambient glows */
+.joke-display::before,
+.joke-display::after {
+  content: '';
+  position: absolute;
+  width: 60vmax;
+  height: 60vmax;
+  border-radius: 50%;
+  filter: blur(6vmax);
+  opacity: 0.35;
+  animation: joke-drift 20s ease-in-out infinite alternate;
+}
+
+.joke-display::before {
+  top: -30vmax;
+  left: -20vmax;
+  background: radial-gradient(circle, #5ad1ff, transparent 65%);
+}
+
+.joke-display::after {
+  bottom: -30vmax;
+  right: -20vmax;
+  background: radial-gradient(circle, #8a5cff, transparent 65%);
+  animation-duration: 26s;
+  animation-direction: alternate-reverse;
+}
+
+@keyframes joke-drift {
+  to {
+    transform: translate(12vmax, 8vmax) scale(1.2);
+  }
+}
+
+.joke-box {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  min-height: calc(100vh - 24vh);
+  overflow: hidden;
+  border-radius: 3vw;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 2vw 6vw rgba(0, 0, 0, 0.35), inset 0 0 4vw rgba(90, 209, 255, 0.08);
+}
+
+/* Oversized faint glyph behind the text */
+.joke-box::before {
+  content: '?!';
+  position: absolute;
+  top: -4vw;
+  right: 2vw;
+  font-size: 22vw;
+  font-weight: 700;
+  color: #5ad1ff;
+  opacity: 0.07;
+  pointer-events: none;
+}
+
+.joke-text {
+  position: relative;
+  width: 100%;
+  padding: 5vw 7vw;
   text-align: center;
-  padding: 0 10vw;
-  color: rgb(227 221 163);
-  font: 100 5vw sans-serif;
+  font-size: 5vw;
+  font-weight: 200;
+  line-height: 1.3;
+  overflow-wrap: anywhere;
+  text-shadow: 0 0 2vw rgba(90, 209, 255, 0.45);
+  animation: joke-in 0.9s ease-out;
+}
+
+@keyframes joke-in {
+  from {
+    opacity: 0;
+    filter: blur(8px);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+  }
 }

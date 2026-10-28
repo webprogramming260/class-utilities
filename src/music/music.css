@@ -1,13 +1,146 @@
 .player {
+  position: relative;
   display: flex;
-  justify-content: center;
-  align-items: center;
   flex-direction: column;
+  align-items: center;
+  gap: 1vw;
   width: 100%;
-  font: 100 8vw sans-serif;
-  background-color: #e2a92b;
+  height: 100%;
+  min-height: 30vw;
+  padding: 2vw;
+  box-sizing: border-box;
+  overflow: hidden;
+  color: white;
+  font-family: sans-serif;
+  background: linear-gradient(160deg, #0f1226, #1d2a5b 60%, #0b3b5a);
+}
+
+.wave {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.info,
+.progress,
+.controls,
+.playlist {
+  position: relative;
+  z-index: 1;
+}
+
+.info {
+  text-align: center;
+}
+
+.track-count {
+  font-size: 1.5vw;
+  opacity: 0.6;
+  letter-spacing: 0.2em;
 }
 
 .title {
+  font-size: 5vw;
+  font-weight: 200;
+}
+
+.progress {
+  display: flex;
+  align-items: center;
+  gap: 1vw;
+  width: 70%;
+  font-size: 1.5vw;
+  opacity: 0.85;
+}
+
+.progress input {
+  flex: 1;
+  height: 6px;
+  appearance: none;
+  border-radius: 3px;
+  cursor: pointer;
+  background: linear-gradient(to right, #5ad1ff var(--pct), rgba(255, 255, 255, 0.2) var(--pct));
+}
+
+.progress input::-webkit-slider-thumb {
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: white;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 2vw;
+  margin-top: auto;
+}
+
+.controls button {
+  width: 5vw;
+  height: 5vw;
+  border: none;
+  border-radius: 50%;
+  font-size: 2.2vw;
   color: white;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.12);
+  transition:
+    transform 0.15s,
+    background 0.15s;
+}
+
+.controls button:hover {
+  transform: scale(1.1);
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.controls button.main {
+  width: 7vw;
+  height: 7vw;
+  font-size: 3vw;
+  background: #5ad1ff;
+  color: #0f1226;
+}
+
+.controls button.active {
+  background: rgba(90, 209, 255, 0.4);
+}
+
+.playlist {
+  position: absolute;
+  inset: auto 2vw 10vw 2vw;
+  max-height: 50%;
+  margin: 0;
+  padding: 0.5vw;
+  overflow-y: auto;
+  list-style: none;
+  font-size: 2vw;
+  border-radius: 1vw;
+  background: rgba(10, 14, 40, 0.92);
+  backdrop-filter: blur(8px);
+}
+
+.playlist li {
+  padding: 0.6vw 1vw;
+  border-radius: 0.6vw;
+  cursor: pointer;
+}
+
+.playlist li:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.playlist li.current {
+  color: #5ad1ff;
+  background: rgba(90, 209, 255, 0.12);
+}
+
+.playlist .num {
+  display: inline-block;
+  width: 3vw;
+  opacity: 0.5;
 }

@@ -1,0 +1,308 @@
+.demo {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(160deg, #0f1226, #1d2a5b 60%, #0b3b5a);
+  font-family: sans-serif;
+}
+
+/* Aurora: blurred blobs drifting and cycling hue */
+.demo-aurora {
+  position: absolute;
+  width: 60vmax;
+  height: 40vmax;
+  border-radius: 50%;
+  filter: blur(8vmax);
+  mix-blend-mode: screen;
+  opacity: 0.45;
+  animation:
+    demo-drift 18s ease-in-out infinite alternate,
+    demo-hue 12s linear infinite;
+}
+
+.demo-aurora-1 {
+  top: -20vmax;
+  left: -15vmax;
+  background: radial-gradient(circle, #5ad1ff, transparent 65%);
+}
+
+.demo-aurora-2 {
+  bottom: -20vmax;
+  right: -15vmax;
+  background: radial-gradient(circle, #8a5cff, transparent 65%);
+  animation-duration: 23s, 16s;
+  animation-direction: alternate-reverse, normal;
+}
+
+.demo-aurora-3 {
+  top: 20vmax;
+  left: 20vmax;
+  background: radial-gradient(circle, #2cffb5, transparent 65%);
+  opacity: 0.25;
+  animation-duration: 29s, 20s;
+}
+
+@keyframes demo-drift {
+  0% {
+    transform: translate(0, 0) rotate(0deg) scale(1);
+  }
+  50% {
+    transform: translate(12vmax, 8vmax) rotate(40deg) scale(1.25);
+  }
+  100% {
+    transform: translate(-8vmax, 14vmax) rotate(-30deg) scale(0.9);
+  }
+}
+
+@keyframes demo-hue {
+  to {
+    filter: blur(8vmax) hue-rotate(360deg);
+  }
+}
+
+/* Twinkling stars */
+.demo-star {
+  position: absolute;
+  border-radius: 50%;
+  background: white;
+  box-shadow: 0 0 0.6vmin white;
+  opacity: 0;
+  animation: demo-twinkle ease-in-out infinite;
+}
+
+@keyframes demo-twinkle {
+  0%,
+  100% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.4);
+  }
+}
+
+/* Stage holds everything centered */
+.demo-stage {
+  position: relative;
+  width: 70vmin;
+  height: 70vmin;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10vmin;
+}
+
+/* Expanding ripples */
+.demo-ripple {
+  position: absolute;
+  width: 20vmin;
+  height: 20vmin;
+  border: 0.3vmin solid #5ad1ff;
+  border-radius: 50%;
+  opacity: 0;
+  animation: demo-ripple 4.5s ease-out infinite;
+}
+
+@keyframes demo-ripple {
+  0% {
+    transform: scale(0.5);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(4.5);
+    opacity: 0;
+  }
+}
+
+/* Morphing blob behind the cube */
+.demo-blob {
+  position: absolute;
+  width: 30vmin;
+  height: 30vmin;
+  background: linear-gradient(135deg, #5ad1ff, #8a5cff, #ff5ccf);
+  background-size: 300% 300%;
+  filter: blur(1vmin);
+  opacity: 0.55;
+  animation:
+    demo-morph 8s ease-in-out infinite,
+    demo-gradient 6s ease infinite,
+    demo-spin 20s linear infinite;
+}
+
+@keyframes demo-morph {
+  0%,
+  100% {
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  }
+  25% {
+    border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+  }
+  50% {
+    border-radius: 50% 50% 33% 67% / 55% 27% 73% 45%;
+  }
+  75% {
+    border-radius: 33% 67% 58% 42% / 63% 68% 32% 37%;
+  }
+}
+
+@keyframes demo-gradient {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes demo-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Orbits: a rotating ring with a glowing planet on its edge */
+.demo-orbit {
+  position: absolute;
+  width: var(--size);
+  height: var(--size);
+  border-radius: 50%;
+  border: 1px solid hsla(var(--hue), 90%, 70%, 0.25);
+  animation: demo-spin var(--dur) linear infinite;
+}
+
+.demo-planet {
+  position: absolute;
+  top: -1.2vmin;
+  left: 50%;
+  width: 2.4vmin;
+  height: 2.4vmin;
+  margin-left: -1.2vmin;
+  border-radius: 50%;
+  background: hsl(var(--hue), 90%, 70%);
+  box-shadow: 0 0 2vmin hsl(var(--hue), 90%, 65%);
+}
+
+/* 3D cube floating and tumbling */
+.demo-float {
+  perspective: 90vmin;
+  animation: demo-bob 5s ease-in-out infinite;
+}
+
+@keyframes demo-bob {
+  0%,
+  100% {
+    transform: translateY(-2vmin);
+  }
+  50% {
+    transform: translateY(2vmin);
+  }
+}
+
+.demo-cube {
+  position: relative;
+  width: 16vmin;
+  height: 16vmin;
+  transform-style: preserve-3d;
+  animation: demo-tumble 14s linear infinite;
+}
+
+@keyframes demo-tumble {
+  from {
+    transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+  }
+  to {
+    transform: rotateX(360deg) rotateY(720deg) rotateZ(360deg);
+  }
+}
+
+.demo-face {
+  position: absolute;
+  inset: 0;
+  border: 0.3vmin solid rgba(255, 255, 255, 0.7);
+  background: rgba(90, 209, 255, 0.15);
+  box-shadow:
+    inset 0 0 3vmin rgba(90, 209, 255, 0.6),
+    0 0 3vmin rgba(90, 209, 255, 0.4);
+  backdrop-filter: blur(2px);
+  animation: demo-glow 4s ease-in-out infinite alternate;
+}
+
+.demo-front {
+  transform: translateZ(8vmin);
+}
+.demo-back {
+  transform: rotateY(180deg) translateZ(8vmin);
+}
+.demo-right {
+  transform: rotateY(90deg) translateZ(8vmin);
+}
+.demo-left {
+  transform: rotateY(-90deg) translateZ(8vmin);
+}
+.demo-top {
+  transform: rotateX(90deg) translateZ(8vmin);
+}
+.demo-bottom {
+  transform: rotateX(-90deg) translateZ(8vmin);
+}
+
+@keyframes demo-glow {
+  from {
+    background: rgba(90, 209, 255, 0.1);
+  }
+  to {
+    background: rgba(138, 92, 255, 0.3);
+  }
+}
+
+/* Title: gradient sweep plus per-letter wave */
+.demo-title {
+  position: absolute;
+  bottom: 6vmin;
+  margin: 0;
+  display: flex;
+  font-size: 7vmin;
+  font-weight: 200;
+  letter-spacing: 0.3vmin;
+}
+
+.demo-title span {
+  display: inline-block;
+  background: linear-gradient(90deg, #5ad1ff, #ffffff, #8a5cff, #5ad1ff);
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation:
+    demo-wave 2.4s ease-in-out infinite,
+    demo-sweep 5s linear infinite;
+  animation-delay: calc(var(--i) * 0.1s), calc(var(--i) * -0.15s);
+}
+
+@keyframes demo-wave {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-1.6vmin);
+  }
+}
+
+@keyframes demo-sweep {
+  to {
+    background-position: -300% 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .demo * {
+    animation-duration: 60s !important;
+  }
+}

@@ -19,28 +19,34 @@ canvas {
 
 .countdown-separator {
   align-items: center;
-  color: #ffab11;
+  color: white;
+  font-family: sans-serif;
+  font-weight: 200;
   font-size: 2rem;
 }
+
 @keyframes flash {
   0% {
-    background-color: #222222;
+    opacity: 0;
   }
   10% {
-    background-color: white;
+    opacity: 0.85;
   }
-  40% {
-    background-color: #222222;
-  }
+  40%,
   100% {
-    background-color: #222222;
+    opacity: 0;
   }
 }
 
-.timer-flash {
+.timer-flash::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: white;
+  pointer-events: none;
   animation: flash 1s infinite;
 }
 
 .timer-expired {
-  background-color: #ffffff;
+  background: #ffffff;
 }
