@@ -70,7 +70,7 @@ export default function Demo({ onClick }) {
       </div>
 
       <h1 className="demo-title">
-        {'CS 260'.split('').map((c, i) => (
+        {'Computer Science'.split('').map((c, i) => (
           <span key={i} style={{ '--i': i }}>
             {c === ' ' ? '\u00a0' : c}
           </span>

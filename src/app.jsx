@@ -10,19 +10,18 @@ import Demo from './demo/demo';
 import News from './news/news';
 import Church from './church/church';
 
-const utilities = ['blank', 'clock', 'joke', 'quote', 'timer', 'music', 'demo', 'news', 'church'];
+const utilities = ['blank', 'clock', 'joke', 'quote', 'demo', 'news', 'church', 'timer', 'music'];
 
-// Church has no first-letter key available (c is clock).
-const shortcuts = { l: 'church' };
+const shortcuts = { b: 'blank', c: 'clock', j: 'joke', q: 'quote', t: 'timer', m: 'music', d: 'demo', n: 'news', l: 'church' };
 
 function getUtilityFromKey(key) {
   const normalizedKey = key.toLowerCase();
-  return shortcuts[normalizedKey] || utilities.find((util) => util.charAt(0) === normalizedKey);
+  return shortcuts[normalizedKey];
 }
 
 function getUtilityFromPath(pathname) {
   const keyFromPath = pathname.replace(/^\/+/, '').charAt(0);
-  return keyFromPath ? getUtilityFromKey(keyFromPath) : null;
+  return keyFromPath ? getUtilityFromKey(keyFromPath) : 'blank';
 }
 
 function getPathFromUtility(utility) {
@@ -34,7 +33,7 @@ function getPathFromUtility(utility) {
 }
 
 export default function App() {
-  const [utility, setUtility] = React.useState(() => getUtilityFromPath(window.location.pathname) || 'blank');
+  const [utility, setUtility] = React.useState(() => getUtilityFromPath(window.location.pathname));
 
   function onClick() {
     setUtility((utility) => {
@@ -53,7 +52,7 @@ export default function App() {
     };
 
     const onPopState = () => {
-      setUtility(getUtilityFromPath(window.location.pathname) || 'blank');
+      setUtility(getUtilityFromPath(window.location.pathname));
     };
 
     document.addEventListener('keypress', onKeyPress);
