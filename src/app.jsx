@@ -14,55 +14,31 @@ const utilities = ['blank', 'clock', 'joke', 'quote', 'demo', 'news', 'church', 
 
 const shortcuts = { b: 'blank', c: 'clock', j: 'joke', q: 'quote', t: 'timer', m: 'music', d: 'demo', n: 'news', l: 'church' };
 
-const basePath = (import.meta.env.BASE_URL || '/').replace(/\/$/, '') || '';
-
 function getUtilityFromKey(key) {
   const normalizedKey = key.toLowerCase();
   return shortcuts[normalizedKey];
 }
 
-function normalizePath(pathname = '') {
-  if (!pathname) {
-    return '/';
-  }
-
-  if (basePath && pathname.startsWith(basePath)) {
-    const withoutBase = pathname.slice(basePath.length);
-    return withoutBase.startsWith('/') ? withoutBase : `/${withoutBase}`;
-  }
-
-  return pathname;
-}
-
-function getUtilityFromPath(pathname) {
-  const normalizedPath = normalizePath(pathname);
-  const keyFromPath = normalizedPath.replace(/^\/+/, '').charAt(0);
+function getUtilityFromPath(path = '') {
+  const keyFromPath = path.replace(/^\/+/, '').charAt(0);
   return keyFromPath ? getUtilityFromKey(keyFromPath) : 'blank';
 }
 
-function getUtilityFromLocation(location) {
-  const params = new URLSearchParams(location.search);
-  const pathParam = params.get('path');
-  if (pathParam) {
-    const utilityFromParam = getUtilityFromPath(pathParam);
-    if (utilityFromParam) {
-      return utilityFromParam;
-    }
-  }
-
-  return getUtilityFromPath(location.pathname);
+function getUtilityFromHash(hash = '') {
+  const path = hash.startsWith('#') ? hash.slice(1) : hash;
+  return getUtilityFromPath(path);
 }
 
 function getPathFromUtility(utility) {
   const shortcutEntry = Object.entries(shortcuts).find(([, mappedUtility]) => mappedUtility === utility);
   if (shortcutEntry) {
-    return `${basePath}/${shortcutEntry[0]}` || `/${shortcutEntry[0]}`;
+    return `/${shortcutEntry[0]}`;
   }
-  return basePath || '/';
+  return '/';
 }
 
 export default function App() {
-  const [utility, setUtility] = React.useState(() => getUtilityFromLocation(window.location));
+  const [utility, setUtility] = React.useState(() => getUtilityFromHash(window.location.hash));
 
   function onClick() {
     setUtility((utility) => {
@@ -80,23 +56,23 @@ export default function App() {
       }
     };
 
-    const onPopState = () => {
-      setUtility(getUtilityFromLocation(window.location));
+    const onHashChange = () => {
+      setUtility(getUtilityFromHash(window.location.hash));
     };
 
     document.addEventListener('keypress', onKeyPress);
-    window.addEventListener('popstate', onPopState);
+    window.addEventListener('hashchange', onHashChange);
 
     return () => {
       document.removeEventListener('keypress', onKeyPress);
-      window.removeEventListener('popstate', onPopState);
+      window.removeEventListener('hashchange', onHashChange);
     };
   }, []);
 
   React.useEffect(() => {
     const nextPath = getPathFromUtility(utility);
-    if (window.location.pathname !== nextPath) {
-      window.history.pushState(null, '', nextPath);
+    if (window.location.hash !== `#${nextPath}`) {
+      window.location.hash = nextPath;
     }
   }, [utility]);
 
